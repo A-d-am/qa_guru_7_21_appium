@@ -1,7 +1,11 @@
+import allure
 import pytest
+import allure_commons
 from appium.options.android import UiAutomator2Options
 from appium.options.ios import XCUITestOptions
-from selene import browser
+from selene import browser, support
+
+from qa_guru_7_21_appium.utils import allure_utils
 import project
 
 
@@ -48,14 +52,27 @@ def mobile_management(request):
             }
         })
 
-    browser.config.driver_remote_url = project.config.driver_remote_url
-    browser.config.driver_options = options
+    with allure.step('init app session'):
+        browser.config.driver_remote_url = project.config.driver_remote_url
+        browser.config.driver_options = options
 
     browser.config.timeout = project.config.timeout
 
+    browser.config._wait_decorator = support._logging.wait_with(
+        context=allure_commons._allure.StepContext
+    )
+
     yield
 
-    browser.quit()
+    allure_utils.attach_screenshot()
+    allure_utils.attach_xml()
+
+    session_id = browser.driver.session_id
+
+    with allure.step('tear down app session'):
+        browser.quit()
+
+    allure_utils.attach_bstack_video(session_id)
 
 
 ios = pytest.mark.parametrize('mobile_management', ['ios'], indirect=True)
