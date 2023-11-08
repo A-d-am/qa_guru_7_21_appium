@@ -28,8 +28,8 @@ def mobile_management(request):
                 "sessionName": "BStack first_test",
 
                 # Set your access credentials
-                "userName": project.config.userName,
-                "accessKey": project.config.accessKey
+                "userName": project.config.bstack_userName,
+                "accessKey": project.config.bstack_accessKey
             }
         })
     elif request.param == 'ios':
@@ -44,8 +44,8 @@ def mobile_management(request):
 
             # Set other BrowserStack capabilities
             "bstack:options": {
-                "userName": project.config.userName,
-                "accessKey": project.config.accessKey,
+                "userName": project.config.bstack_userName,
+                "accessKey": project.config.bstack_accessKey,
                 "projectName": "First Python project",
                 "buildName": "browserstack-build-1",
                 "sessionName": "BStack first_test"
