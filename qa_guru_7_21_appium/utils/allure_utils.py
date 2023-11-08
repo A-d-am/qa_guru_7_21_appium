@@ -9,7 +9,6 @@ def attach_bstack_video(session_id):
         f'https://api.browserstack.com/app-automate/sessions/{session_id}.json',
         auth=(project.config.bstack_userName, project.config.bstack_accessKey),
     ).json()
-    print(bstack_session)
     video_url = bstack_session['automation_session']['video_url']
 
     allure.attach(
@@ -27,7 +26,8 @@ def attach_screenshot():
     allure.attach(
         browser.driver.get_screenshot_as_png(),
         name='screenshot',
-        attachment_type=allure.attachment_type.PNG
+        attachment_type=allure.attachment_type.PNG,
+        extension='.png'
     )
 
 
