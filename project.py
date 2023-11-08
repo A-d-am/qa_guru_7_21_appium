@@ -7,8 +7,8 @@ BASE_DIR = os.path.dirname(__file__)
 
 class Config(BaseSettings):
     driver_remote_url: str
-    userName: str
-    accessKey: str
+    bstack_userName: str
+    bstack_accessKey: str
     timeout: float = 10.0
     android_app_url: str
     ios_app_url: str
