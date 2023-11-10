@@ -36,7 +36,7 @@ def test_open_article_after_search():
     with step('Open first article'):
         results.first.click()
 
-    with (step('Article should be opened')):
+    with step('Article should be opened'):
         article_header = browser.element((AppiumBy.CLASS_NAME, "android.widget.TextView"))
 
         assert article_header.should(have.exact_text('Appium'))
