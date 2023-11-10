@@ -7,7 +7,8 @@
 
 # MacOS
 .DS_Store
-
+# Build
+*.apk
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -29,4 +30,4 @@ __pycache__/
 # Environments
 .venv*
 venv*/
-.env
+.env.sd
